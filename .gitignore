@@ -1,3 +1,13 @@
-.venv
-todo_app/__pycache__/
-todo_project/__pycache__/
+# Ignore virtual environment directory
+.venv/
+
+# Ignore Python bytecode files
+*.pyc
+__pycache__/
+
+# Ignore local development settings
+todo_project/settings/local.py
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
