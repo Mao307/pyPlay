@@ -3,6 +3,8 @@
 {% extends "base.html" %}
 
 
+
+
 {% block content %}
 
 <div>
@@ -29,7 +31,9 @@
 
                         role="button"
 
-                        onclick="location.href='#'">
+                        onclick="location.href='{% url "item-update" todo_list.id todo.id %}'">
+
+                        
 
                         {{ todo.title }}
 
@@ -57,7 +61,8 @@
 
                 type="button"
 
-                onclick="location.href='#'" />
+                onclick="location.href='{% url "item-add" todo_list.id %}'"
+                />
 
         </p>
 
