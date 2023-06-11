@@ -1,4 +1,5 @@
-from django.urls import reverse
+from typing import Any, Dict
+from django.urls import reverse, reverse_lazy
 
 
 from django.views.generic import (
@@ -8,6 +9,8 @@ from django.views.generic import (
     CreateView,
 
     UpdateView,
+
+    DeleteView,
 
 )
 
@@ -135,3 +138,18 @@ class ItemUpdate(UpdateView):
     def get_success_url(self):
 
         return reverse("list", args=[self.object.todo_list_id])
+    
+class ListDelete(DeleteView):
+    model = TodoList
+    success_url = reverse_lazy("index")
+
+class ItemDelete(DeleteView):
+    model = TodoItem
+
+    def get_success_url(self):
+        return reverse_lazy("list", args=[self.kwargs["list_id"]])
+    
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context= super().get_context_data(**kwargs)
+        context["todo_list"] = self.object.todo_list
+        return context
